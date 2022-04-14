@@ -18,7 +18,6 @@ def checkBaseURI():
         time.sleep(10)
 
     baseURI = str(contract_instance.functions.tokenURI(1).call())[:-1]
-
     if 'ipfs://' in baseURI:
 
         baseURI = 'https://ipfs.io/ipfs/' + baseURI.split("ipfs://",1)[1]
