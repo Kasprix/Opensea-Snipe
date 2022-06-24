@@ -47,16 +47,18 @@ for item in counted_rarity_score:
 sorted_listed_items = dict(sorted(listed_items.items(), key=operator.itemgetter(1), reverse=True))
 sorted_listed_items_rank = dict(sorted(listed_items_rank.items(), key=operator.itemgetter(1), reverse=True))
 
-ranked = {key: rank for key, rank in enumerate(sorted(listed_items_rank, key=listed_items_rank.get, reverse=False), 1)}
+ranked = {key: rank for key, rank in enumerate(sorted(set(sorted_listed_items_rank.values()), reverse=False), 1)}
 
 for v in sorted_listed_items:
     print('------------------')
     print('Token ID:', v)
     print('Price:', sorted_listed_items[v])
-    print('Rank:', list(ranked.keys())[list(ranked.values()).index(v)])
+    # print('Rank:', list(ranked.keys())[list(ranked.values()).index(v)])
     print('Score:', sorted_listed_items_rank[v])
     print('OS Link: https://opensea.io/assets/' + contractAddress + '/' + str(v))
     print('Metadata Link: ' + baseURI + str(v))
 
 print(sorted_listed_items_rank)
+print('----')
+print(ranked)
 print("--- %s seconds ---" % (time.time() - start_time))
